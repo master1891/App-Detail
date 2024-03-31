@@ -91,7 +91,7 @@ fun HomeScreen(navController: NavHostController) {
                 startDestination = Screen.Profile.route
             ) {
                 composable(Screen.Profile.route) {
-                    // TODO: Profile 
+                    ProfileScreen()
                 }
                 composable(Screen.Pokemons.route) {
                     PokemonScreen(

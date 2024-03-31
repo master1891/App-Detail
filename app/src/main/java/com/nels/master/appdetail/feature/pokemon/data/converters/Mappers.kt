@@ -16,7 +16,7 @@ fun DetailPokemonDto.toPokemonEntity(): PokemonEntity {
         height = height,
         weight = weight,
         name = name,
-        sprite = sprites.back_default,
+        sprite = sprites.front_default,
     )
 }
 
@@ -26,7 +26,7 @@ fun DetailPokemonDto.toPokemon(): Pokemon {
         height = height,
         weight = weight,
         name = name,
-        sprite= sprites.back_default,
+        sprite= sprites.front_default,
     )
 }
 

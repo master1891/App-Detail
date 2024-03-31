@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -38,6 +39,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
 import com.nels.master.appdetail.R
+import com.nels.master.appdetail.components.CircularProfile
 
 
 /**
@@ -49,46 +51,26 @@ fun DetailsScreen() {
     val detailsViewModel = hiltViewModel<DetailsViewModel>()
     val detailsState = detailsViewModel.detailsState.collectAsState().value
 
-    val backDropImageState = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(LocalContext.current)
-            .data(detailsState.pokemon?.sprite)
-            .size(Size.ORIGINAL)
-            .build()
-    ).state
-
-
     Column(
-        modifier = Modifier
+        modifier = Modifier.fillMaxSize()
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(rememberScrollState()),
+
     ) {
 
-        if (backDropImageState is AsyncImagePainter.State.Error  || backDropImageState is AsyncImagePainter.State.Loading ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(220.dp)
-                    .background(MaterialTheme.colorScheme.primaryContainer),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    modifier = Modifier.size(70.dp),
-                    imageVector = Icons.Rounded.ImageNotSupported,
-                    contentDescription = detailsState.pokemon?.name
-                )
-            }
-        }
-
-        if (backDropImageState is AsyncImagePainter.State.Success) {
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(220.dp),
-                painter = backDropImageState.painter,
-                contentDescription = detailsState.pokemon?.name,
-                contentScale = ContentScale.Crop
+        Box(
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProfile(
+                modifier = Modifier,
+                textColor = Color.LightGray,
+                backgroundColor = Color.Green,
+                profileText = detailsState.pokemon?.name,
+                url = detailsState.pokemon?.sprite ?: ""
             )
         }
+
 
         Spacer(modifier = Modifier.height(16.dp))
 

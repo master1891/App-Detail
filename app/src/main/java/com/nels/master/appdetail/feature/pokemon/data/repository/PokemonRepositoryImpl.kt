@@ -74,9 +74,7 @@ class PokemonRepositoryImpl @Inject constructor(
                 emit(Response.Success(listaPokemons))
                 emit(Response.Processing(false))
 
-
             }
-
         }
     }
 
