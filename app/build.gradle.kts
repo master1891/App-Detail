@@ -93,6 +93,12 @@ dependencies {
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.paging)
 
+    // Coil
+    implementation(libs.coil.compose)
+
+    // Extended Icons
+    implementation(libs.androidx.material.icons.extended)
+
     //logs
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)

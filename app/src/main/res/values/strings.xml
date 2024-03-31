@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">App Detail</string>
+    <string name="peso">Peso:</string>
+    <string name="altura">"Altura: "</string>
+    <string name="profile">Profile</string>
+    <string name="pokemons">Pokemons</string>
 </resources>

@@ -15,7 +15,6 @@ interface PokemonApiService {
     suspend fun getDetailPokemon(@Url url: String): DetailPokemonDto
 
     companion object{
-        const val URL_IMAGE = "https://pokeapi.co/api/v2/pokemon/27/"
         const val URL_BASE = "https://pokeapi.co/api/v2/"
     }
 }

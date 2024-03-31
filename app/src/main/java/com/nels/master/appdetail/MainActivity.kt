@@ -13,8 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.nels.master.appdetail.core.HomeScreen
-import com.nels.master.appdetail.core.ProfileScreen
-import com.nels.master.appdetail.feature.pokemon.presentation.DetailScreen
+import com.nels.master.appdetail.feature.pokemon.presentation.DetailsScreen
 import com.nels.master.appdetail.ui.theme.AppDetailTheme
 import com.nels.master.appdetail.util.Screen
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,8 +29,8 @@ class MainActivity : ComponentActivity() {
             NavHost(navController = navController, startDestination = Screen.Home.route ){
                 
                 composable( Screen.Home.route){
-                    //contiene el profile y el pokemon Screen
-                   HomeScreen(navHostController = navController)
+
+                   HomeScreen(navController)
                 }
 
                 composable(
@@ -40,7 +39,7 @@ class MainActivity : ComponentActivity() {
                         navArgument("pokemonId"){type = NavType.IntType}
                     )
                 ){
-                    DetailScreen()
+                    DetailsScreen()
                 }
             }
 
