@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.hiltPlugin)
     id("kotlin-kapt")
+    id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -102,6 +104,21 @@ dependencies {
     //logs
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
+
+    //Permisos
+    implementation (libs.accompanist.permissions)
+
+    //Firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    implementation("com.google.firebase:firebase-analytics")
+
+    implementation("com.google.firebase:firebase-firestore:24.10.0")
+    implementation("com.google.firebase:firebase-storage:20.3.0")
+
+    //Google Services y Mapas
+    implementation ("com.google.maps.android:maps-compose:2.9.0")
+    implementation ("com.google.android.gms:play-services-maps:18.2.0")
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
 
 }
 kapt {

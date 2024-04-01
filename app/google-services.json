@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "796133971213",
+    "project_id": "examen-satori",
+    "storage_bucket": "examen-satori.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796133971213:android:2c8c883ef271b9426bcc44",
+        "android_client_info": {
+          "package_name": "com.nels.master.appdetail"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAS9y8E6RGMKiLo9Z7d8Nzqe2wXSPAwvwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
