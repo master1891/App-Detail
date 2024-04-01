@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material.icons.rounded.List
+import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -40,6 +41,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.nels.master.appdetail.R
+import com.nels.master.appdetail.feature.location.presentation.LoacationScreen
 import com.nels.master.appdetail.feature.pokemon.presentation.PokemonScreen
 import com.nels.master.appdetail.feature.pokemon.presentation.PokemonUIEvent
 import com.nels.master.appdetail.feature.pokemon.presentation.PokemonViewModel
@@ -93,6 +95,11 @@ fun HomeScreen(navController: NavHostController) {
                 composable(Screen.Profile.route) {
                     ProfileScreen()
                 }
+
+                composable(Screen.Location.route) {
+                    LoacationScreen()
+                }
+
                 composable(Screen.Pokemons.route) {
                     PokemonScreen(
                         pokemonState = pokemonState,
@@ -115,6 +122,10 @@ fun BottomNavigationBar(
         BottomItem(
             title = "Profile",
             icon = Icons.Rounded.AccountCircle
+        ),
+        BottomItem(
+            title = "Location",
+            icon = Icons.Rounded.LocationOn
         ), BottomItem(
             title = "Pokemons",
             icon = Icons.Rounded.List
@@ -140,6 +151,12 @@ fun BottomNavigationBar(
                         }
 
                         1 -> {
+                            onEvent(PokemonUIEvent.Navigate)
+                            bottomNavController.popBackStack()
+                            bottomNavController.navigate(Screen.Location.route)
+                        }
+
+                        2 -> {
                             onEvent(PokemonUIEvent.Navigate)
                             bottomNavController.popBackStack()
                             bottomNavController.navigate(Screen.Pokemons.route)
