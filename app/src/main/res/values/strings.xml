@@ -4,4 +4,7 @@
     <string name="altura">"Altura: "</string>
     <string name="profile">Profile</string>
     <string name="pokemons">Pokemons</string>
+    <string name="detalle">Detalle</string>
+    <string name="location">Location</string>
+    <string name="id">Id:</string>
 </resources>

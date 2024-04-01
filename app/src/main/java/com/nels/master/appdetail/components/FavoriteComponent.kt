@@ -22,6 +22,7 @@ import com.nels.master.appdetail.R
 
 @Composable
 fun FavoriteComponent(
+    modifier: Modifier = Modifier,
     iSFavorite: Boolean = false, onTap: (isFavorite: Boolean) -> Unit
 ) {
     var thumbIconLiked by remember {
@@ -32,8 +33,8 @@ fun FavoriteComponent(
         mutableStateOf(iSFavorite)
     }
 
-
     IconButton(
+        modifier = modifier,
         onClick = {
             thumbIconLiked = !thumbIconLiked
             onTap(thumbIconLiked)

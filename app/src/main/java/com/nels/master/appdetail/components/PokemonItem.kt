@@ -109,7 +109,6 @@ fun PokemonItem(
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(6.dp)
                     .height(150.dp)
                     .clip(RoundedCornerShape(22.dp)),
                 painter = imageState.painter,
@@ -118,27 +117,32 @@ fun PokemonItem(
             )
         }
 
-        Spacer(modifier = Modifier.height(6.dp))
-
-        Text(
-            modifier = Modifier
-                .padding(start = 16.dp)
-                .fillMaxWidth()
-                .align(Alignment.CenterHorizontally)
-            ,
-            text = pokemon.name.capitalize(Locale.current),
-            color = Color.Black,
-            fontSize = 20.sp,
-            maxLines = 1,
-            fontWeight = FontWeight.Medium
-        )
-        Spacer(modifier = Modifier.height(6.dp))
-
-
-        FavoriteComponent(pokemon.isFavorite) {
-            val pokemon = pokemon.copy(isFavorite = it)
-            pokemonViewModel.updateFavoritePokemon(pokemon)
+        Box (
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.Center ){
+            Text(
+                modifier = Modifier
+                    .align(Alignment.Center)
+                ,
+                text = pokemon.name.capitalize(Locale.current),
+                color = Color.Black,
+                fontSize = 20.sp,
+                maxLines = 1,
+                fontWeight = FontWeight.Medium
+            )
         }
+
+        Spacer(modifier = Modifier.height(6.dp))
+
+        Box (
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.Center ){
+            FavoriteComponent(Modifier,pokemon.isFavorite) {
+                val pokemon = pokemon.copy(isFavorite = it)
+                pokemonViewModel.updateFavoritePokemon(pokemon)
+            }
+        }
+
 
     }
 }

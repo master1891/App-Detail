@@ -40,6 +40,7 @@ import coil.request.ImageRequest
 import coil.size.Size
 import com.nels.master.appdetail.R
 import com.nels.master.appdetail.components.CircularProfile
+import com.nels.master.appdetail.components.FavoriteComponent
 
 
 /**
@@ -49,30 +50,49 @@ import com.nels.master.appdetail.components.CircularProfile
 fun DetailsScreen() {
 
     val detailsViewModel = hiltViewModel<DetailsViewModel>()
+    val pokemonViewModel = hiltViewModel<PokemonViewModel>()
     val detailsState = detailsViewModel.detailsState.collectAsState().value
 
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
-
     ) {
 
         Box(
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
             contentAlignment = Alignment.Center
         ) {
-            CircularProfile(
-                modifier = Modifier,
-                textColor = Color.LightGray,
-                backgroundColor = Color.Green,
-                profileText = detailsState.pokemon?.name,
-                url = detailsState.pokemon?.sprite ?: ""
-            )
+
+            Column {
+                Box(
+                    modifier = Modifier.fillMaxWidth(),
+                    contentAlignment = Alignment.Center
+                ){
+                    Spacer(modifier = Modifier.size(16.dp))
+                    CircularProfile(
+                        modifier = Modifier,
+                        textColor = Color.LightGray,
+                        backgroundColor = Color.Green,
+                        profileText = detailsState.pokemon?.name,
+                        url = detailsState.pokemon?.sprite ?: ""
+                    )
+                }
+                detailsState.pokemon?.isFavorite?.let {
+                    Box(
+                        modifier = Modifier.fillMaxWidth(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        FavoriteComponent(modifier = Modifier,it) {
+                            val pokemon = detailsState.pokemon.copy(isFavorite = it)
+                            pokemonViewModel.updateFavoritePokemon(pokemon)
+                        }
+                    }
+                }
+
+            }
         }
-
-
-        Spacer(modifier = Modifier.height(16.dp))
 
         Row(
             modifier = Modifier
@@ -87,6 +107,7 @@ fun DetailsScreen() {
                     horizontalAlignment = Alignment.CenterHorizontally
 
                 ) {
+
                     Text(
                         modifier = Modifier.padding(start = 16.dp),
                         text = pokemon.name,
@@ -96,11 +117,18 @@ fun DetailsScreen() {
 
                     Spacer(modifier = Modifier.height(16.dp))
 
+                    Text(
+                        modifier = Modifier.padding(start = 16.dp),
+                        text = stringResource(R.string.id) + pokemon.weight,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
 
                     Text(
                         modifier = Modifier.padding(start = 16.dp),
                         text = stringResource(R.string.peso) + pokemon.weight,
-                        fontSize = 16.sp
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold
                     )
 
                     Spacer(modifier = Modifier.height(10.dp))
@@ -108,7 +136,8 @@ fun DetailsScreen() {
                     Text(
                         modifier = Modifier.padding(start = 16.dp),
                         text = stringResource(R.string.altura) + pokemon.height,
-                        fontSize = 16.sp
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold
                     )
 
                     Spacer(modifier = Modifier.height(10.dp))

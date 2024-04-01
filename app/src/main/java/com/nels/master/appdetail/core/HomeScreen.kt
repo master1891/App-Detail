@@ -63,12 +63,13 @@ fun HomeScreen(navController: NavHostController) {
                 title = {
                     Text(
                         text = when(pokemonState.screen){
-                            Screen.DetailPokemons -> "Detalle"
-                            Screen.Home -> "Home"
-                            Screen.Location -> "Location"
-                            Screen.Pokemons -> "Pokemons"
-                            Screen.Profile -> "Profile"
+
+                            Screen.DetailPokemons -> stringResource(R.string.detalle)
+                            Screen.Location -> stringResource(R.string.location)
+                            Screen.Pokemons -> stringResource(R.string.pokemons)
+                            Screen.Profile -> stringResource(R.string.profile)
                             Screen.Nothing -> TODO()
+                            Screen.Home ->  TODO()
                         }
                     )
                 },
