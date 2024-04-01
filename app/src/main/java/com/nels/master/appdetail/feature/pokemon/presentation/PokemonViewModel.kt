@@ -5,9 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.nels.master.appdetail.feature.pokemon.domain.models.Pokemon
 import com.nels.master.appdetail.feature.pokemon.domain.repository.PokemonRepository
 import com.nels.master.appdetail.util.Response
+import com.nels.master.appdetail.util.Screen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
@@ -28,11 +28,11 @@ class PokemonViewModel @Inject constructor(
     }
 
 
-    fun uiEvent(uiEvent: PokemonUIEvent){
+    fun uiEvent(screen: Screen = Screen.Profile,uiEvent: PokemonUIEvent){
         when(uiEvent){
             PokemonUIEvent.Navigate -> {
                 _pokemonState.update {
-                    it.copy(mainScreen = !pokemonState.value.mainScreen)
+                    it.copy(screen = screen)
                 }
             }
             PokemonUIEvent.Paginate -> {

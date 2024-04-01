@@ -6,5 +6,6 @@ sealed class Screen(val route: String) {
     object  Pokemons : Screen("Pokemons")
     object  Location : Screen("Location")
     object  DetailPokemons : Screen("DetailPokemons")
+    object  Nothing : Screen("Nothing")
 
 }

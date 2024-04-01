@@ -14,12 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.nels.master.appdetail.components.PokemonItem
+import com.nels.master.appdetail.util.Screen
 
 @Composable
 fun PokemonScreen(
     pokemonState: PokemonState,
     navController: NavHostController,
-    onEvent: (PokemonUIEvent) -> Unit
+    onEvent: (Screen,PokemonUIEvent) -> Unit
 ) {
 
     if (pokemonState.listPokemons.isEmpty()) {
@@ -44,7 +45,7 @@ fun PokemonScreen(
 
                 //logica para cargar mas elementos
                 if (index >= pokemonState.listPokemons.size - 1 && !pokemonState.loading) {
-                    onEvent(PokemonUIEvent.Paginate)
+                    onEvent(Screen.Nothing,PokemonUIEvent.Paginate)
                 }
 
             }

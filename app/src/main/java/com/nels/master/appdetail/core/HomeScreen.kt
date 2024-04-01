@@ -1,15 +1,11 @@
 package com.nels.master.appdetail.core
 
-import android.graphics.drawable.VectorDrawable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material.icons.rounded.List
 import androidx.compose.material.icons.rounded.LocationOn
@@ -25,8 +21,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -68,11 +62,14 @@ fun HomeScreen(navController: NavHostController) {
             TopAppBar(
                 title = {
                     Text(
-                        text = if (pokemonState.mainScreen)
-                            stringResource(R.string.profile)
-                        else
-                            stringResource(R.string.pokemons),
-                        fontSize = 20.sp
+                        text = when(pokemonState.screen){
+                            Screen.DetailPokemons -> "Detalle"
+                            Screen.Home -> "Home"
+                            Screen.Location -> "Location"
+                            Screen.Pokemons -> "Pokemons"
+                            Screen.Profile -> "Profile"
+                            Screen.Nothing -> TODO()
+                        }
                     )
                 },
                 modifier = Modifier.shadow(2.dp),
@@ -115,7 +112,7 @@ fun HomeScreen(navController: NavHostController) {
 
 @Composable
 fun BottomNavigationBar(
-    bottomNavController: NavHostController, onEvent: (PokemonUIEvent) -> Unit
+    bottomNavController: NavHostController, onEvent: (Screen,PokemonUIEvent) -> Unit
 ) {
 
     val items = listOf(
@@ -145,19 +142,19 @@ fun BottomNavigationBar(
                     selected.intValue = index
                     when (selected.intValue) {
                         0 -> {
-                            onEvent(PokemonUIEvent.Navigate)
+                            onEvent(Screen.Profile,PokemonUIEvent.Navigate)
                             bottomNavController.popBackStack()
                             bottomNavController.navigate(Screen.Profile.route)
                         }
 
                         1 -> {
-                            onEvent(PokemonUIEvent.Navigate)
+                            onEvent(Screen.Location,PokemonUIEvent.Navigate)
                             bottomNavController.popBackStack()
                             bottomNavController.navigate(Screen.Location.route)
                         }
 
                         2 -> {
-                            onEvent(PokemonUIEvent.Navigate)
+                            onEvent(Screen.Pokemons,PokemonUIEvent.Navigate)
                             bottomNavController.popBackStack()
                             bottomNavController.navigate(Screen.Pokemons.route)
                         }
