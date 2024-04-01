@@ -9,7 +9,7 @@ import retrofit2.http.Url
 interface PokemonApiService {
 
     @GET("pokemon/")
-    suspend fun getPokemons(@Query("limit") limit: Int = 10 ,@Query("offset") offset: Int): PokemonDto
+    suspend fun getPokemons(@Query("limit") limit: Int = 25 ,@Query("offset") offset: Int): PokemonDto
 
     @GET()
     suspend fun getDetailPokemon(@Url url: String): DetailPokemonDto

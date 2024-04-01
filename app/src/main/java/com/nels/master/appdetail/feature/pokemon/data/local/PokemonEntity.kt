@@ -12,4 +12,5 @@ class PokemonEntity(
     val height: Int,
     val weight: Int,
     val sprite: String,
+    val isFavorite:Boolean
 )

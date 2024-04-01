@@ -6,6 +6,6 @@ data class PokemonState(
     val listPokemons: List<Pokemon> = emptyList(),
     val loading : Boolean = false,
     val mainScreen : Boolean = true,
-     var offsetPageIncrement : Int =  25,
+     var offsetPageIncrement : Int =  0,
 )
 

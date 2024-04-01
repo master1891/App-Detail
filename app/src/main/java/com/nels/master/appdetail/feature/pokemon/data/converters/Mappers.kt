@@ -10,15 +10,7 @@ import com.nels.master.appdetail.feature.pokemon.domain.models.Pokemon
 //se usa cuando el adicciona;l ya esta seteado
 
 
-fun DetailPokemonDto.toPokemonEntity(): PokemonEntity {
-    return PokemonEntity(
-        id = id,
-        height = height,
-        weight = weight,
-        name = name,
-        sprite = sprites.front_default,
-    )
-}
+
 
 fun DetailPokemonDto.toPokemon(): Pokemon {
     return Pokemon(
@@ -27,6 +19,7 @@ fun DetailPokemonDto.toPokemon(): Pokemon {
         weight = weight,
         name = name,
         sprite= sprites.front_default,
+        isFavorite = false
     )
 }
 
@@ -37,6 +30,7 @@ fun PokemonEntity.toPokemon(): Pokemon {
         weight = weight,
         name = name,
         sprite = sprite,
+        isFavorite = isFavorite
     )
 }
 
@@ -47,6 +41,7 @@ fun Pokemon.toPokemonEntity(): PokemonEntity {
         weight = weight,
         name = name,
         sprite = sprite,
+        isFavorite = isFavorite
     )
 }
 

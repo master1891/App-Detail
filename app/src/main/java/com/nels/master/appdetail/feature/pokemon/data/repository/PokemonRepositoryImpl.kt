@@ -94,5 +94,19 @@ class PokemonRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun saveFavorite(pokemon: Pokemon): Flow<Response<List<Pokemon>>> {
+        return flow {
+            emit(Response.Processing(true))
+            try {
+                pokemonDatabase.pokemonDao.upsertPokemon(listOf(pokemon.toPokemonEntity()))
+                val pokemons =  pokemonDatabase.pokemonDao.getPokemons()
+                emit(Response.Success(pokemons.map { it.toPokemon() }))
+            }catch (ex:Exception){
+                emit(Response.Error(null,"No se pudo guardar"))
+            }
+            emit(  Response.Processing(false))
+        }
+    }
+
 
 }

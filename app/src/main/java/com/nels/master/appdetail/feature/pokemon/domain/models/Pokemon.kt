@@ -6,5 +6,5 @@ data class Pokemon(
     val height: Int,
     val weight: Int,
     val sprite: String,
-
-    )
+    val isFavorite:Boolean
+)

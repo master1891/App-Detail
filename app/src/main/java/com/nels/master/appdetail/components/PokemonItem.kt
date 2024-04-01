@@ -19,6 +19,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,6 +38,7 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImagePainter
@@ -44,6 +46,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
 import com.nels.master.appdetail.feature.pokemon.domain.models.Pokemon
+import com.nels.master.appdetail.feature.pokemon.presentation.PokemonViewModel
 import com.nels.master.appdetail.util.Screen
 
 @Composable
@@ -51,6 +54,10 @@ fun PokemonItem(
     pokemon: Pokemon,
     navHostController: NavHostController
 ) {
+
+    val pokemonViewModel = hiltViewModel<PokemonViewModel>()
+    val pokemonState = pokemonViewModel.pokemonState.collectAsState()
+
     val imageState = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
             .data(pokemon.sprite)
@@ -114,7 +121,8 @@ fun PokemonItem(
         Spacer(modifier = Modifier.height(6.dp))
 
         Text(
-            modifier = Modifier.padding(start = 16.dp)
+            modifier = Modifier
+                .padding(start = 16.dp)
                 .fillMaxWidth()
                 .align(Alignment.CenterHorizontally)
             ,
@@ -125,6 +133,12 @@ fun PokemonItem(
             fontWeight = FontWeight.Medium
         )
         Spacer(modifier = Modifier.height(6.dp))
+
+
+        FavoriteComponent(pokemon.isFavorite) {
+            val pokemon = pokemon.copy(isFavorite = it)
+            pokemonViewModel.updateFavoritePokemon(pokemon)
+        }
 
     }
 }
