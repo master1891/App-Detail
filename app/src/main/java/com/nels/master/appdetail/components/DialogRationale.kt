@@ -34,7 +34,7 @@ fun RationaleAlert(onDismiss: () -> Unit, onConfirm: () -> Unit) {
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
-                    text = "We need location permissions to use this app",
+                    text = "Se necesita permisos de ubucación",
                 )
                 Spacer(modifier = Modifier.height(24.dp))
                 TextButton(
