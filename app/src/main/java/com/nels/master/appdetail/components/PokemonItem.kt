@@ -105,7 +105,7 @@ fun PokemonItem(
         }
 
         if (imageState is AsyncImagePainter.State.Success) {
-
+                /*
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -115,6 +115,14 @@ fun PokemonItem(
                 contentDescription = pokemon.name,
                 contentScale = ContentScale.Fit
             )
+                 */
+            Spacer(modifier = Modifier.height(16.dp))
+            Box (
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center ){
+                CircularProfile(profileText = pokemon.name, url = pokemon.sprite)
+            }
+
         }
 
         Box (
